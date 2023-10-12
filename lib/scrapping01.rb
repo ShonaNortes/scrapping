@@ -4,6 +4,7 @@ require 'open-uri'
 require 'rubygems'
 
 def scrap_function
+
   # Récupérer la page web et la parser avec Nokogiri
   page = Nokogiri::HTML(URI.open('https://coinmarketcap.com/all/views/all/'))
 
@@ -18,15 +19,15 @@ def scrap_function
   crypto_names.zip(crypto_values) do |name, value|
     cryptocurrencies << { name.text => value.text }
   end
-  # Afficher le tableau de crypto-monnaies
 
-  # if array contains data then return true 
-  if cryptocurrencies.length
+  # Afficher le tableau de crypto-monnaies
+  puts cryptocurrencies
+
+  # Return true si il y a de la data dans cryptocurrencies
+  if cryptocurrencies.length > 0
     return true
   end
-  # otherwise return false
   return false
-
 end
 
 scrap_function
